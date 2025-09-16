@@ -26,32 +26,32 @@
   "scripts": {
     "clean": "rimraf dist",
     "prepare": "husky",
-    "prebuild": "pnpm clean",
-    "build": "pnpm build:modern",
-    "build:watch": "pnpm build:modern -w",
+    "prebuild": "yarn clean",
+    "build": "yarn build:modern",
+    "build:watch": "yarn build:modern -w",
     "postbuild": "node ./scripts/rollup/assert-esm-exports.mjs && node ./scripts/rollup/assert-cjs-exports.cjs",
     "build:modern": "rollup --bundleConfigAsCjs -c ./scripts/rollup/rollup.config.js",
     "build:esm": "rollup --bundleConfigAsCjs -c ./scripts/rollup/rollup.esm.config.js",
     "prettier:fix": "prettier --config .prettierrc --write .",
     "lint": "eslint '**/*.{js,ts,tsx}'",
-    "lint:fix": "pnpm lint --fix",
+    "lint:fix": "yarn lint --fix",
     "type": "tsc --noEmit",
     "jest-preview": "jest-preview",
     "test": "jest --config ./scripts/jest/jest.config.js",
-    "test:coverage": "pnpm test -- --coverage",
-    "test:watch": "pnpm test -- --onlyChanged --watch",
-    "test:web": "TEST_ENV=web pnpm test",
+    "test:coverage": "yarn test -- --coverage",
+    "test:watch": "yarn test -- --onlyChanged --watch",
+    "test:web": "TEST_ENV=web yarn test",
     "test:type": "tsd src/__typetest__",
     "e2e": "cypress run",
     "e2e:watch": "cypress open",
     "api-extractor": "api-extractor run --local",
-    "api-extractor:build": "pnpm build:esm && pnpm api-extractor",
+    "api-extractor:build": "yarn build:esm && yarn api-extractor",
     "api-extractor:ci": "node scripts/apiExtractor.js",
     "postversion": "git push && git push origin v$npm_package_version",
-    "prepublishOnly": "pnpm install && pnpm lint:fix && pnpm type && pnpm test && pnpm build",
-    "bundlewatch": "pnpm build:modern && bundlewatch",
-    "start": "pnpm build:esm && pnpm --dir ./app install && pnpm --dir ./app run dev",
-    "csb:install": "npm i -g pnpm@8 && pnpm i"
+    "prepublishOnly": "yarn install && yarn lint:fix && yarn type && yarn test && yarn build",
+    "bundlewatch": "yarn build:modern && bundlewatch",
+    "start": "yarn build:esm && yarn --dir ./app install && yarn --dir ./app run dev",
+    "csb:install": "npm i -g yarn@8 && yarn i"
   },
   "keywords": [
     "react",
@@ -126,8 +126,8 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "pnpm lint:fix",
-      "pnpm prettier:fix"
+      "yarn lint:fix",
+      "yarn prettier:fix"
     ],
     "*.{md,json,yml}": [
       "prettier --write"
