@@ -27,6 +27,7 @@
     "clean": "rimraf dist",
     "prepare": "husky",
     "prebuild": "yarn clean",
+    "prepack": "yarn build:modern",
     "build": "yarn build:modern",
     "build:watch": "yarn build:modern -w",
     "postbuild": "node ./scripts/rollup/assert-esm-exports.mjs && node ./scripts/rollup/assert-cjs-exports.cjs",
