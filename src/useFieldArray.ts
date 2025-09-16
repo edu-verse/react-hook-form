@@ -398,6 +398,7 @@ export function useFieldArray<
       iterateFieldsByAction(control._fields, (ref, key: string) => {
         if (
           control._names.focus &&
+          typeof key === 'string' &&
           key.startsWith(control._names.focus) &&
           ref.focus
         ) {
